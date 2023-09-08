@@ -9,3 +9,4 @@ Directory contents are as follows:
 * `/util` - Utility scripts/apps for notifications, archival, and restoration
 * `/aws` - AWS user data files
 
+TODO: complete the description of this project; include snapshots of website.
