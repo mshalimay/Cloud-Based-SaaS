@@ -1,0 +1,74 @@
+<!--
+annotations.html - Display a list of user annotation jobs with links to details for each job
+Copyright (C) 2015-2023 Vas Vasiliadis <vas@uchicago.edu>
+University of Chicago
+-->
+
+
+{% extends "base.html" %}
+
+{% block title %}Annotations{% endblock %}
+
+{% block body %}
+    {% block styles %}
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 16px;
+            }
+            th, td {
+                padding: 7px;
+                text-align: left;
+            }
+            th {
+                border-bottom: 1px solid #ccc;
+                border-top: 1px solid #ccc;
+            }
+            tr td {
+                border-bottom: 1px solid #ccc;
+            }
+        </style>
+    {% endblock %}
+
+    {% include "header.html" %}
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>My Annotations</h1>
+        </div>
+
+        <div class="row text-right">
+            <a href="{{ url_for('annotate') }}" title="Request New Annotation">
+                <button type="button" class="btn btn-link" aria-label="Request New Annotation">
+                    <i class="fa fa-plus fa-lg"></i> Request New Annotation
+                </button>
+            </a>
+        </div>
+
+        <!-- DISPLAY LIST OF ANNOTATION JOBS -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>Request Time</th>
+                    <th>VCF File Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for annotation in annotations %}
+                    <tr>
+                        <td><a href="{{ url_for('annotation_details', id=annotation[0]) }}">{{ annotation[0] }}</a></td>
+                        <td>{{ annotation[1] }}</td>
+                        <td>{{ annotation[2] }}</td>
+                        <td>{{ annotation[3] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div> <!-- container -->
+
+{% endblock %}

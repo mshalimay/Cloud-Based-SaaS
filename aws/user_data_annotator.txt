@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# download gas.zip from S3
+# @ref https://docs.aws.amazon.com/AmazonS3/latest/userguide/download-objects.html see "Using the AWS CLI example"
+aws s3 cp s3://mpcs-students/mashalimay/gas.zip /home/ubuntu/
+
+# unzip gas files
+unzip /home/ubuntu/gas.zip -d /home/ubuntu/
+
+# delete zip file from EC2
+rm /home/ubuntu/gas.zip
+
+# Change ownership to ubuntu
+# @ref https://phoenixnap.com/kb/linux-chown-command-with-examples see 'How to recursively change file ownership'
+chown -R ubuntu:ubuntu /home/ubuntu/gas
+
+# add write permissions to the gas folder for ubuntu user
+#https://linuxhint.com/what-is-the-meaning-of-chmod-755-and-how-to-execute-and-verify-it/ go to  'Applying chmod 755'
+chmod -R 755 /home/ubuntu/gas
+
+# make run_gas.sh executable
+chmod +x /home/ubuntu/gas/web/run_gas.sh
+
+# Run the script as user ubuntu in the background
+# @ref https://www.developerfiles.com/run-command-as-different-user-in-ubuntu/ 
+# OBS: AWS recommends not using sudo, but instances were killed by trying without it, like with below command
+
+# su -c "/home/ubuntu/gas/ann/run_ann.sh &" ubuntu
+
+# using sudo
+sudo -u ubuntu bash gas/ann/run_ann.sh &
