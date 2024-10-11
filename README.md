@@ -4,7 +4,7 @@ Cloud-based SaaS platform for compute-intensive genetic annotation tasks, utiliz
 
 Deployment of the platform is on AWS using following services: EC2, EBS, S3, DynamoDB, SQS, SNS, Glacier, Lambda functions, Step Functions, Security Groups, and ELB. Integrated Stripe and Globus for payment and user authentication.
 
-This project was developed as part of UChicago MPCS Cloud Computing course created by Professor Vas Vasiliadis.
+This project was developed as part of Cloud Computing course from Professor Vas Vasiliadis.
 
 Directory contents are as follows:
 * `/web` - The web app files
